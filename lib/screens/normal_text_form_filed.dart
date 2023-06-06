@@ -155,9 +155,10 @@ class _NormalTextFormFieldState extends State<NormalTextFormField> {
       bottomNavigationBar: MainButton(
         onPressed: () {
           if (_formKey.currentState!.validate()) {
-            ScaffoldMessenger.of(context).showSnackBar(
-              const SnackBar(content: Text('Processing Data')),
-            );
+            print(_nameController.text);
+            print(_ageController.text);
+            print(_emailController.text);
+            print(_confirmController.text);
           }
         },
       ),
