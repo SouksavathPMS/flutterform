@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:workingwithform_flutter/providers/normal_text_form_field_provider.dart';
 
 import 'screens/flutter_form_builder.dart';
 import 'screens/flutter_hooks.dart';
@@ -17,10 +19,15 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'FlutterForm',
       theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.cyan),
+        colorScheme: ColorScheme.fromSeed(seedColor: Colors.green),
         useMaterial3: true,
       ),
-      home: const MyHomePage(),
+      home: MultiProvider(
+        providers: [
+          ChangeNotifierProvider(create: (_) => NormalTextFormFieldProvider()),
+        ],
+        child: const MyHomePage(),
+      ),
     );
   }
 }
