@@ -59,13 +59,17 @@ class _NormalTextFormFieldState extends State<NormalTextFormField> {
               TextFormField(
                 autovalidateMode: AutovalidateMode.onUserInteraction,
                 controller: _nameController,
-                decoration: const InputDecoration(
-                  contentPadding: EdgeInsets.only(left: 8, right: 8),
+                decoration: InputDecoration(
+                  contentPadding: const EdgeInsets.only(left: 8, right: 8),
                   filled: true,
                   isDense: true,
-                  border: OutlineInputBorder(),
+                  border: const OutlineInputBorder(),
                   hintText: 'Name',
-                  prefixIcon: Icon(Icons.person),
+                  prefixIcon: const Icon(Icons.person),
+                  suffixIcon: IconButton(
+                    onPressed: () => _nameController.clear(),
+                    icon: const Icon(Icons.close),
+                  ),
                 ),
                 validator: (value) {
                   if (value == null || value.trim().isEmpty) {
@@ -79,13 +83,17 @@ class _NormalTextFormFieldState extends State<NormalTextFormField> {
                 autovalidateMode: AutovalidateMode.onUserInteraction,
                 controller: _ageController,
                 keyboardType: TextInputType.number,
-                decoration: const InputDecoration(
-                  contentPadding: EdgeInsets.only(left: 8, right: 8),
+                decoration: InputDecoration(
+                  contentPadding: const EdgeInsets.only(left: 8, right: 8),
                   filled: true,
                   isDense: true,
-                  border: OutlineInputBorder(),
+                  border: const OutlineInputBorder(),
                   hintText: 'Age',
-                  prefixIcon: Icon(Icons.person_add_alt_rounded),
+                  prefixIcon: const Icon(Icons.person_add_alt_rounded),
+                  suffixIcon: IconButton(
+                    onPressed: () => _ageController.clear(),
+                    icon: const Icon(Icons.close),
+                  ),
                 ),
                 validator: (value) {
                   try {
@@ -113,13 +121,17 @@ class _NormalTextFormFieldState extends State<NormalTextFormField> {
                 autovalidateMode: AutovalidateMode.onUserInteraction,
                 controller: _emailController,
                 keyboardType: TextInputType.emailAddress,
-                decoration: const InputDecoration(
-                  contentPadding: EdgeInsets.only(left: 8, right: 8),
+                decoration: InputDecoration(
+                  contentPadding: const EdgeInsets.only(left: 8, right: 8),
                   filled: true,
                   isDense: true,
-                  border: OutlineInputBorder(),
+                  border: const OutlineInputBorder(),
                   hintText: 'Email',
-                  prefixIcon: Icon(Icons.email),
+                  prefixIcon: const Icon(Icons.email),
+                  suffixIcon: IconButton(
+                    onPressed: () => _emailController.clear(),
+                    icon: const Icon(Icons.close),
+                  ),
                 ),
                 validator: (value) {
                   if (value == null || value.isEmpty) {
@@ -135,13 +147,17 @@ class _NormalTextFormFieldState extends State<NormalTextFormField> {
                 autovalidateMode: AutovalidateMode.onUserInteraction,
                 controller: _confirmController,
                 keyboardType: TextInputType.emailAddress,
-                decoration: const InputDecoration(
-                  contentPadding: EdgeInsets.only(left: 8, right: 8),
+                decoration: InputDecoration(
+                  contentPadding: const EdgeInsets.only(left: 8, right: 8),
                   filled: true,
                   isDense: true,
-                  border: OutlineInputBorder(),
+                  border: const OutlineInputBorder(),
                   hintText: 'Confirm',
-                  prefixIcon: Icon(Icons.check_circle),
+                  prefixIcon: const Icon(Icons.check_circle),
+                  suffixIcon: IconButton(
+                    onPressed: () => _confirmController.clear(),
+                    icon: const Icon(Icons.close),
+                  ),
                 ),
                 validator: (value) {
                   if (value == null || value.isEmpty) {
