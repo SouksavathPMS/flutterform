@@ -156,15 +156,17 @@ class _NormalTextFormFieldState extends State<NormalTextFormField> {
           ),
         ),
       ),
-      bottomNavigationBar: MainButton(
-        onPressed: () {
-          if (_formKey.currentState!.validate()) {
-            print(_nameController.text.trim());
-            print(_ageController.text.trim());
-            print(_emailController.text.trim());
-            print(_confirmController.text.trim());
-          }
-        },
+      bottomNavigationBar: SafeArea(
+        child: MainButton(
+          onPressed: () {
+            if (_formKey.currentState!.validate()) {
+              print(_nameController.text);
+              print(_ageController.text);
+              print(_emailController.text);
+              print(_confirmController.text);
+            }
+          },
+        ),
       ),
     );
   }
