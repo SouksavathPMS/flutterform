@@ -9,7 +9,7 @@ class NormalTextFormFieldProvider extends ChangeNotifier {
   final nameController = TextEditingController();
   final ageController = TextEditingController();
   final emailController = TextEditingController();
-  final confirmController = TextEditingController(text: "CONFIRM");
+  final confirmController = TextEditingController();
 
   void setData() {
     if (_formKey.currentState!.validate()) {

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:workingwithform_flutter/providers/flutter_form_builder_provider.dart';
 import 'package:workingwithform_flutter/providers/normal_text_form_field_provider.dart';
 
 import 'screens/flutter_form_builder.dart';
@@ -25,6 +26,7 @@ class MyApp extends StatelessWidget {
       home: MultiProvider(
         providers: [
           ChangeNotifierProvider(create: (_) => NormalTextFormFieldProvider()),
+          ChangeNotifierProvider(create: (_) => FlutterFormBuilderProvider()),
         ],
         child: const MyHomePage(),
       ),
