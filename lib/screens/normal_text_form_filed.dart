@@ -57,6 +57,7 @@ class _NormalTextFormFieldState extends State<NormalTextFormField> {
           child: Column(
             children: [
               TextFormField(
+                autovalidateMode: AutovalidateMode.onUserInteraction,
                 controller: _nameController,
                 decoration: const InputDecoration(
                   contentPadding: EdgeInsets.only(left: 8, right: 8),
@@ -75,6 +76,7 @@ class _NormalTextFormFieldState extends State<NormalTextFormField> {
               ),
               const SizedBox(height: 10),
               TextFormField(
+                autovalidateMode: AutovalidateMode.onUserInteraction,
                 controller: _ageController,
                 keyboardType: TextInputType.number,
                 decoration: const InputDecoration(
@@ -108,6 +110,7 @@ class _NormalTextFormFieldState extends State<NormalTextFormField> {
               ),
               const SizedBox(height: 10),
               TextFormField(
+                autovalidateMode: AutovalidateMode.onUserInteraction,
                 controller: _emailController,
                 keyboardType: TextInputType.emailAddress,
                 decoration: const InputDecoration(
@@ -129,6 +132,7 @@ class _NormalTextFormFieldState extends State<NormalTextFormField> {
               ),
               const SizedBox(height: 10),
               TextFormField(
+                autovalidateMode: AutovalidateMode.onUserInteraction,
                 controller: _confirmController,
                 keyboardType: TextInputType.emailAddress,
                 decoration: const InputDecoration(
@@ -155,10 +159,10 @@ class _NormalTextFormFieldState extends State<NormalTextFormField> {
       bottomNavigationBar: MainButton(
         onPressed: () {
           if (_formKey.currentState!.validate()) {
-            print(_nameController.text);
-            print(_ageController.text);
-            print(_emailController.text);
-            print(_confirmController.text);
+            print(_nameController.text.trim());
+            print(_ageController.text.trim());
+            print(_emailController.text.trim());
+            print(_confirmController.text.trim());
           }
         },
       ),
