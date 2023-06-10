@@ -1,4 +1,6 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:form_builder_validators/form_builder_validators.dart';
 import 'package:provider/provider.dart';
 import 'package:workingwithform_flutter/providers/flutter_form_builder_provider.dart';
 import 'package:workingwithform_flutter/providers/normal_text_form_field_provider.dart';
@@ -6,6 +8,9 @@ import 'package:workingwithform_flutter/providers/normal_text_form_field_provide
 import 'screens/flutter_form_builder.dart';
 import 'screens/flutter_hooks.dart';
 import 'screens/normal_text_form_filed.dart';
+
+// ignore: depend_on_referenced_packages
+import 'package:flutter_localizations/flutter_localizations.dart';
 
 void main() {
   runApp(const MyApp());
@@ -23,6 +28,18 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.green),
         useMaterial3: true,
       ),
+      supportedLocales: const [
+        Locale('en', 'US'),
+        Locale('lo', 'LA'),
+      ],
+      localizationsDelegates: const [
+        GlobalMaterialLocalizations.delegate,
+        GlobalCupertinoLocalizations.delegate,
+        GlobalWidgetsLocalizations.delegate,
+        DefaultCupertinoLocalizations.delegate,
+        FormBuilderLocalizations.delegate,
+      ],
+      locale: const Locale("en"),
       home: MultiProvider(
         providers: [
           ChangeNotifierProvider(create: (_) => NormalTextFormFieldProvider()),

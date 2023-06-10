@@ -39,9 +39,7 @@ class FlutterFormBuilderProvider extends ChangeNotifier {
   getValidation(FormType formType) {
     switch (formType) {
       case FormType.name:
-        return FormBuilderValidators.compose([
-          FormBuilderValidators.required(),
-        ]);
+        return FormBuilderValidators.required();
       case FormType.age:
         return FormBuilderValidators.compose([
           FormBuilderValidators.required(),
@@ -57,6 +55,7 @@ class FlutterFormBuilderProvider extends ChangeNotifier {
       case FormType.confirm:
         return FormBuilderValidators.compose([
           FormBuilderValidators.required(),
+          FormBuilderValidators.match("CONFIRM"),
         ]);
     }
   }
