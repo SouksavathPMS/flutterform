@@ -10,7 +10,6 @@ class FlutterFormBuilderProvider extends ChangeNotifier {
 
   void setData() {
     if (formKey.currentState!.validate()) {
-      
       final name = formKey.currentState!.fields[FormType.name.value]?.value;
       final age = formKey.currentState!.fields[FormType.age.value]?.value;
       final email = formKey.currentState!.fields[FormType.email.value]?.value;
@@ -44,14 +43,14 @@ class FlutterFormBuilderProvider extends ChangeNotifier {
           FormBuilderValidators.required(),
         ]);
       case FormType.age:
-        FormBuilderValidators.compose([
+        return FormBuilderValidators.compose([
           FormBuilderValidators.required(),
           FormBuilderValidators.integer(),
           FormBuilderValidators.min(1),
           FormBuilderValidators.max(150),
         ]);
       case FormType.email:
-        FormBuilderValidators.compose([
+        return FormBuilderValidators.compose([
           FormBuilderValidators.required(),
           FormBuilderValidators.email(),
         ]);
