@@ -9,13 +9,14 @@ class NormalTextFormFieldProvider extends ChangeNotifier {
   final nameController = TextEditingController();
   final ageController = TextEditingController();
   final emailController = TextEditingController();
-  final confirmController = TextEditingController(text: "CONFIRM");
+  final confirmController = TextEditingController();
 
   void setData() {
     if (_formKey.currentState!.validate()) {
       Fluttertoast.cancel();
       Fluttertoast.showToast(
-          msg: "TO THE MOON ^>^",
+          msg:
+              "Name : ${nameController.text}\n Age : ${ageController.text}\n Email : ${emailController.text}",
           toastLength: Toast.LENGTH_SHORT,
           gravity: ToastGravity.BOTTOM,
           timeInSecForIosWeb: 1,

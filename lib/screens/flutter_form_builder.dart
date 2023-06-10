@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
-import 'package:form_builder_validators/form_builder_validators.dart';
+import 'package:provider/provider.dart';
+import 'package:workingwithform_flutter/constants/enums.dart';
 
+import '../providers/flutter_form_builder_provider.dart';
+import '../widgets/custom_form_builder_text_field.dart';
 import '../widgets/main_button.dart';
 
 class FlutterFormBuilder extends StatelessWidget {
@@ -9,124 +12,32 @@ class FlutterFormBuilder extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final formKey = GlobalKey<FormBuilderState>();
-
+    final flutterFormBuilderProvider =
+        context.read<FlutterFormBuilderProvider>();
     return Scaffold(
       body: SingleChildScrollView(
         padding: const EdgeInsets.only(top: 12, left: 12, right: 12),
         child: FormBuilder(
-          key: formKey,
-          child: Column(
+          key: flutterFormBuilderProvider.formKey,
+          initialValue: {
+            FormType.confirm.value: "CONFIRM",
+          },
+          child: const Column(
             children: [
-              FormBuilderTextField(
-                name: 'name',
-                textInputAction: TextInputAction.next,
-                decoration: InputDecoration(
-                  contentPadding: const EdgeInsets.only(left: 8, right: 8),
-                  filled: true,
-                  isDense: true,
-                  border: const OutlineInputBorder(),
-                  hintText: 'Name',
-                  prefixIcon: const Icon(Icons.person),
-                  suffixIcon: IconButton(
-                    onPressed: () {
-                      formKey.currentState!.fields["name"]?.didChange(null);
-                    },
-                    icon: const Icon(Icons.close),
-                  ),
-                ),
-                validator: FormBuilderValidators.compose([
-                  FormBuilderValidators.required(),
-                ]),
-              ),
-              const SizedBox(height: 10),
-              FormBuilderTextField(
-                name: 'age',
-                textInputAction: TextInputAction.next,
-                keyboardType: TextInputType.number,
-                decoration: InputDecoration(
-                  contentPadding: const EdgeInsets.only(left: 8, right: 8),
-                  filled: true,
-                  isDense: true,
-                  border: const OutlineInputBorder(),
-                  hintText: 'Age',
-                  prefixIcon: const Icon(Icons.person),
-                  suffixIcon: IconButton(
-                    onPressed: () {
-                      formKey.currentState!.fields["age"]?.didChange(null);
-                    },
-                    icon: const Icon(Icons.close),
-                  ),
-                ),
-                validator: FormBuilderValidators.compose([
-                  FormBuilderValidators.required(),
-                  FormBuilderValidators.integer(),
-                  FormBuilderValidators.min(1),
-                  FormBuilderValidators.max(150),
-                ]),
-              ),
-              const SizedBox(height: 10),
-              FormBuilderTextField(
-                name: 'email',
-                textInputAction: TextInputAction.next,
-                keyboardType: TextInputType.emailAddress,
-                decoration: InputDecoration(
-                  contentPadding: const EdgeInsets.only(left: 8, right: 8),
-                  filled: true,
-                  isDense: true,
-                  border: const OutlineInputBorder(),
-                  hintText: 'Email',
-                  prefixIcon: const Icon(Icons.person),
-                  suffixIcon: IconButton(
-                    onPressed: () {
-                      formKey.currentState!.fields["email"]?.didChange(null);
-                    },
-                    icon: const Icon(Icons.close),
-                  ),
-                ),
-                validator: FormBuilderValidators.compose([
-                  FormBuilderValidators.required(),
-                  FormBuilderValidators.email(),
-                ]),
-              ),
-              const SizedBox(height: 10),
-              FormBuilderTextField(
-                name: 'confirm',
-                textInputAction: TextInputAction.done,
-                decoration: InputDecoration(
-                  contentPadding: const EdgeInsets.only(left: 8, right: 8),
-                  filled: true,
-                  isDense: true,
-                  border: const OutlineInputBorder(),
-                  hintText: 'Confirm',
-                  prefixIcon: const Icon(Icons.person),
-                  suffixIcon: IconButton(
-                    onPressed: () {
-                      formKey.currentState!.fields["confirm"]?.didChange(null);
-                    },
-                    icon: const Icon(Icons.close),
-                  ),
-                ),
-                validator: FormBuilderValidators.compose([
-                  FormBuilderValidators.required(),
-                  FormBuilderValidators.equal("CONFIRM"),
-                ]),
-              ),
+              CustomFormBuilderTextField(formType: FormType.name),
+              SizedBox(height: 10),
+              CustomFormBuilderTextField(formType: FormType.age),
+              SizedBox(height: 10),
+              CustomFormBuilderTextField(formType: FormType.email),
+              SizedBox(height: 10),
+              CustomFormBuilderTextField(formType: FormType.confirm),
             ],
           ),
         ),
       ),
       bottomNavigationBar: SafeArea(
         child: MainButton(
-          onPressed: () {
-            final valueField = formKey.currentState!;
-            if (formKey.currentState!.validate()) {
-              print(valueField.fields['name']?.value);
-              print(valueField.fields['age']?.value.runtimeType);
-              print(valueField.fields['email']?.value);
-              print(valueField.fields['confirm']?.value);
-            }
-          },
+          onPressed: () => flutterFormBuilderProvider.setData(),
         ),
       ),
     );
